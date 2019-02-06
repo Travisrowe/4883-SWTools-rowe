@@ -1,5 +1,8 @@
 This assignment scrapes data from nfl.com/schedules and nfl.com/liveupdate/game-center to ultimately find stats on football
 
+## Note on running the program
+To properly execute this code, you must run scrape_game_id.py BEFORE you run scrape_game_data.py
+
 ### scrape_game_id.py
 This file finds gameids of every NFL game from 2009 to 2019 using the html behind nfl.com/schedules. It does this by leveraging the url formatting used (nfl.com/schedules/year/seasontypeWeekNumber e.g. nfl.com/schedules/2018/REG16) and searching the html for the div schedules-list-content to find the gameids.
 
