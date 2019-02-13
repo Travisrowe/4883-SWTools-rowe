@@ -1,6 +1,6 @@
 This assignment scrapes data from nfl.com/schedules and nfl.com/liveupdate/game-center to ultimately find stats on football
 
-## Note on running the program
+## Notes on running the program
 To properly execute this code, you must run scrape_game_id.py BEFORE you run scrape_game_data.py
 Afterward, you can run calculate_stats.py to learn about some pre-programmed NFL stats!
 
