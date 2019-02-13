@@ -1,0 +1,6 @@
+Software tools
+
+LaTex - document production tool "markdown on steroids"
+	VSCode has a LaTex extension
+
+ImageMagick - library in C that has interface with a lot of other languages. Create images from code

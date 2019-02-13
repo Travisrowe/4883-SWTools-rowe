@@ -1,0 +1,25 @@
+url: www.nfl.com/liveupdate/game-center/$gameId/$gameId_gtd.json
+
+path = './live_update_data' # path of files that we scraped and saved locally
+files = getFiles(path)
+
+allFieldGoals = []
+
+#loop through files
+for file in files:
+
+	gameId,ext = os.path.basename(file).split('.')
+	
+	#also be sure to check if a file is json
+	
+def openFileJson(path)
+	try:
+		f = open(path, "r")
+		
+		
+#use .items() when looping through a dictionary
+
+sys.stdout.write(".") writes to console
+
+list.append(list2) adds the whole list as an element to the end of the first list.
+list.extend(list2) adds the elements of list2 to the end of list

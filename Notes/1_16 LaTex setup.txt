@@ -1,0 +1,11 @@
+LaTex setup
+	MikTek.org has download (big as in GBs)
+	Click install missing packages
+	
+	Use in VSCode with LaTex Workshop extension
+	
+latexmk
+latex
+bibtex
+
+https://www.latex-tutorial.com/tutorials/first-document/

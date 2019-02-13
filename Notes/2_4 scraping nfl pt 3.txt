@@ -1,0 +1,6 @@
+process_plays.py
+
+game = "2016121301.json"
+gid, ext = game.split('.')
+year = gid[:4]
+month = gid[4:6] #so if month is 01 or 02, year will be one ahead of the season it belongs to

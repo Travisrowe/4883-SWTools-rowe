@@ -1,0 +1,63 @@
+Scraping NFL
+	www.nfl.com/liveupdate/game-center/... .json
+		data-gameid in the url/html
+		
+	Json format extension on VsCode
+		search json
+		right-click -> format
+#code
+
+import urllib
+from time import sleep
+
+years = [x for x in range(2009,2019)] #hard coded current year
+
+weeks = [x for x in range(1,18)]
+
+gameids = {} #dict
+
+stype = "REG"
+for year in years:
+	gameids[year] = {} #dict
+	for week in weeks:
+		gameids[year][week] = [] #list
+		url = http://www.nfl.com/schedules/%d/%s%s % (year, stype, str(week))
+		page = scraper.go.url
+		
+		
+		
+		divs = page.find_all('div',{"class":"schedules-list-content"})
+		
+
+		for div in divs:
+			#loop through divs
+			#print(div['data-gameid'])
+			gameids[year][week].append(div['data-gameid'])
+		sleep(.02) #keeps server from rejecting our requests
+		
+pprint(gameids)
+
+#save in a json file and hit that file instead of nfl server
+	with open('nfldata.json') as f:
+		data = json.load(f)
+		
+	for season_type,years in data.items(): #items() returns a tuple
+		print(season_type)
+		pprint(years)
+		if season_type == "REG":
+			for year,week_dictionary in years.items():
+				print(year)
+				for week,gameids in week_dictionary.items():
+					print(week)
+					for game in gameids:
+						print(game)
+		else:
+			for year,gameids in years.items():
+				print(year)
+				for game in gameids:
+					print(game)
+					url = "http:www.nfl.com/liveupdate/game-center/%s/%s_gtd.json" % (game, game)
+					
+					#save to a file in a folder called nfl_data/
+					#will automatically overwrite files with same names
+					urllib.request.urlretrieve(url, 'nfl_data/' + game + '.json') 

@@ -1,0 +1,8 @@
+Python packages
+BeautifulScraper
+	A web scraper that is a wrapper around urlLib and BeautifulSoup
+pprint
+	pretty print, tries to do just that in python
+	
+VSCode addons
+	JSON formatter

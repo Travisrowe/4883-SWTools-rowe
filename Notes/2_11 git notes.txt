@@ -1,0 +1,27 @@
+git diff <branch> - shows difference between current branch and <branch>
+git diff <commit-hash>
+
+git log - shows commit logs, with hash values on each commit 
+	HEAD -> is current location
+	--all shows commits in all branches
+git log --oneline --all --graph --decorate
+	makes log look a little neater because it does not show account info, commit hash, etc.
+
+git checkout <commit-hash> - pulls code from a specific commit
+git checkout <branch> - creates a new branch if <branch> is not currently a branch, 
+	otherwise switches to <branch>
+
+git merge <branch> - merges <branch> into current branch
+
+git reset --hard <commit-hash>
+	--hard deletes all commits after the commit at <commit-hash> (inside the branch you are in. 
+		Commits in other branches are safe)
+		
+git remote add origin
+	remote is a repository "somewhere", it doesn't have to be on Github
+	"origin" is the alias of the repo, but it doesn't have to be "origin"
+	
+git push -u origin master
+	-u means remember this the next time I push, so next time I can just type $ git push
+	
+git fetch - tells you what changed but doesn't merge

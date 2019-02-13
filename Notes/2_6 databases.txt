@@ -1,0 +1,15 @@
+Databases
+	sqlzoo.net - basic sql tutorials
+	
+Python is painful to write to relational databases
+PHP is good, apparently
+
+extension
+	sftp sync
+	ctrl + shift + P opens a little thing in VSCode where you can search sftp and change the config
+
+PHP
+	library - mysqli
+	
+	$servername = "cs2.mwsu.edu" #or "localhost" if you want to run your code from the server
+	
