@@ -5,9 +5,9 @@ To properly execute this code, the user should supply either two or four argumen
 
     $ python ascii_image.py
 
-- The first parameter should be the image file name in ~\input_images\ (i.e. rainbow.png), 
-- the second the font name in ~\fonts\ (i.e. block_art.ttf),
-- the third the output file name in ~\output_images\ (i.e. output.png)
+- The first parameter should be the image file name in .\input_images\ (i.e. rainbow.png), 
+- the second the font name in .\fonts\ (i.e. block_art.ttf),
+- the third the output file name in .\output_images\ (i.e. output.png)
 - the fourth the font size (i.e. 12)
 
 So to run the program, the user might type
