@@ -1,0 +1,13 @@
+Image processing
+	1) Get Images (thumbnails)
+		google_images_download.py.
+		wget
+		
+		a)	By subject
+		b)	By color
+	2) Process larger image
+		a) average area based on color
+			-Average color vs dominant color
+	
+	
+	OpenCV(Kmeans - clustering algorithm)

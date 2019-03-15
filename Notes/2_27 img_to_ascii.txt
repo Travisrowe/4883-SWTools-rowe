@@ -1,0 +1,5 @@
+img_to_ascii(**kwargs)
+	**kwargs = key word arguments, the ** sort of blows it up from the dict of kwargs to its key-value pairs
+	so img_to_ascii(path = path, width = 150) // these arguments are sent into kwargs regardless of the order
+		//you send them.
+		width = kwargs.get('width',200) //get me width from kwargs, if there's no width, make it 200

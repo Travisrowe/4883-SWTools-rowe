@@ -1,0 +1,12 @@
+cs2.mwsu.edu/phpmyadmin/
+	user: software_tools
+	pass: horseblanketdonkey
+	
+
+SQL lessons - sqlzoo.net
+	BETWEEN returns a range of values
+	WHERE name LIKE Y% (find countries whose name starts with Y)
+		_ is a single character wildcard
+	
+		
+		

@@ -1,0 +1,5 @@
+MAMP WAMP XAMPP
+	connectors for different OS's to run PHP code
+	
+editing with nano vs VSCode
+	VSCode is all local, so it needs an sftp to talk to a server to run php against a database

@@ -1,0 +1,41 @@
+SFTP
+	install SFTP extension
+	ctrl + shift + p brings up search bar in VSCode
+		> config
+			{
+				"name": "Some name"
+				"host": "cs2.mwsu.edu"
+				"username": "nfluser"
+				"remotePath": "/home/nfluser/public_html"
+			}
+
+sql query
+$sql = "select * from table;";
+$response = runQuery($mysqli, $sql);
+			
+if you can't figure out sql, you can use a php query			
+PHP query
+	$totals = [];
+
+	//foreach $associative_array as $key => $value
+	
+	foreach($stats as $year => $yearly_stat)
+	{
+		echo "<h1>$year</h1>";
+		foreach($yearly_stat as $team => $yards)
+		{
+			echo"<h3>$team</h1>";
+			$totals[$year][$team] = array_sum($yards) / sizeof($yards);
+		}
+		arsort($totals[$year]); //sort array but maintain key => value pairs
+	}
+	
+	foreach($totals as $year => $data)
+	{
+		//print_r is print recursive, mcuh like python print
+		//print_r(array_shift($data)); 
+		
+		$key = key($data);
+		$val = $data[$key];
+		
+	}

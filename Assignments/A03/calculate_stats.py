@@ -59,10 +59,14 @@ def CalculateMostTeamsPlayed():
     for playerId, tAbbrev in playerDict.items():
         numTeamsDict[playerId] = len(tAbbrev)
     # pprint(numTeamsDict)
-    sorted(numTeamsDict, key = numTeamsDict.__getitem__)
-    pprint(numTeamsDict)
+    #sorted(numTeamsDict, key = numTeamsDict.__getitem__)
+    newList = []
+    for key,value in sorted(numTeamsDict.items(), key=lambda kv: kv[1], reverse=True):
+        newList.append((key,value))
+        #print(key,value)
+    pprint(newList)
     print("======================================================================================================================================================================")
-    sorted(playerDict, key=numTeamsDict.__getitem__)
+    sorted(playerDict, key=newList[1])
     return(playerDict)
 
 ##############################################################

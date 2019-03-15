@@ -1,0 +1,2 @@
+glob
+	go into *this* folder recursively, and get every file with *that* extension
