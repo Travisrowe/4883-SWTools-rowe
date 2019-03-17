@@ -38,18 +38,49 @@ to model the perceived change in the structural information
 of the image, whereas MSE is actually estimating the perceived errors."
 
 Ssim returns a value from -1 to 1 where 1 is a perfectly similar image.
+Mse returns a value from 0 to infinity, 
+	where 0 is a perfectly similar image.
+
+parameters:
+	-imageA: an RGB image read in using openCV
+	-imageB: an RGB image read in using openCV
+
+returns:
+	-tuple containing two results:
+		1) the ssim comparison result: a double from -1 to 1
+		2) the mse comparison result: a double from 0 to infinity
 """
-def compare_images(imageA, imageB, title):
+def compare_images(imageA, imageB):
 	# compute the mean squared error and structural similarity
 	# index for the images
-	m = mse(imageA, imageB)
 	s = ssim(imageA, imageB)
+	m = mse(imageA, imageB)
+
+	return (s, m)
  
-	# setup the figure
+	#in our case, we won't plot every image we compare
+	# # setup the figure
+	# fig = plt.figure(title)
+	# plt.suptitle("MSE: %.2f, SSIM: %.2f" % (m, s))
+ 
+	# # show first image
+	# ax = fig.add_subplot(1, 2, 1)
+	# plt.imshow(imageA, cmap = plt.cm.gray)
+	# plt.axis("off")
+ 
+	# # show the second image
+	# ax = fig.add_subplot(1, 2, 2)
+	# plt.imshow(imageB, cmap = plt.cm.gray)
+	# plt.axis("off")
+ 
+	# # show the images
+	# plt.show()
+
+def show_two_images(imageA, imageB, title, subtitle):
 	fig = plt.figure(title)
-	plt.suptitle("MSE: %.2f, SSIM: %.2f" % (m, s))
- 
-	# show first image
+	plt.suptitle(subtitle)
+
+	# show imageA
 	ax = fig.add_subplot(1, 2, 1)
 	plt.imshow(imageA, cmap = plt.cm.gray)
 	plt.axis("off")
@@ -73,22 +104,58 @@ if __name__=='__main__':
 		k,v = arg.split('=')
 		args[k] = v
 
+	#make sure image path starts with a /
+	if(args["image"][0] != '/'):
+		args["image"] = '/' + args["image"]
+
+	#read image into original_img and convert to RGB
 	orig_fp = os.path.dirname(os.path.abspath(__file__)) + args["image"]
 	original_img = cv2.imread(orig_fp)
-	original_img = cv2.cvtColor(original_img, cv2.COLOR_BGR2GRAY)
+	original_img = cv2.cvtColor(original_img, cv2.COLOR_BGR2RGB)
 
-	fig = plt.figure("Images")
-	# show the image
-	ax = fig.add_subplot(1, 3, 1 + 1)
-	ax.set_title(args["image"])
-	plt.imshow(original_img, cmap = plt.cm.gray)
-	plt.axis("off")
+	# (comparison_result, RGB image)
+	closest_file_ssim = (-1, "")
+	closest_file_mse = (-1, "")
 
-	plt.show()
-
+	#Loop through the images in the comparison folder
 	for file in os.listdir(args["folder"]):
-		file = str(args["folder"] + file)
-		compare = cv2.imread(file)
+		#read image into compare and convert to RGB
+		file = str(args["folder"] + '/' + file)
+		print(file)
+		compare_img = cv2.imread(file)
+		compare_img = cv2.cvtColor(compare_img, cv2.COLOR_BGR2RGB)
+		#returns a tuple with the mse and ssim comparison results
+		current_file = compare_images(original_img, compare_img)
+		if(current_file[1] > closest_file_ssim[0]):
+			closest_file_ssim = (current_file[0], compare_img)
+		if(current_file[0] > closest_file_mse[0]):
+			closest_file_mse = (current_file[0], compare_img)
+	# show our results
+	# plot closest match using MSE
+	title = "closest image match using MSE"
+	subtitle = "MSE: %.2f" % (closest_file_mse[0])
+	show_two_images(original_img, closest_file_mse[1], title, subtitle)
+
+	#plot closest match using SSIM
+	title = "closest image match using SSIM"
+	subtitle = "MSE: %.2f" % (closest_file_ssim[0])
+	show_two_images(original_img, closest_file_ssim[1], title, subtitle)
+	# fig = plt.figure("closest image match using MSE")
+	# plt.suptitle("MSE: %.2f" % (closest_file_mse[0]))
+ 
+	# # show original image
+	# ax = fig.add_subplot(1, 2, 1)
+	# plt.imshow(original_img, cmap = plt.cm.gray)
+	# plt.axis("off")
+ 
+	# # show the second image
+	# ax = fig.add_subplot(1, 2, 2)
+	# plt.imshow(closest_file_mse[1], cmap = plt.cm.gray)
+	# plt.axis("off")
+ 
+	# # show the images
+	# plt.show()
+
 
 
 	sys.exit()
