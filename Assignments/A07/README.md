@@ -1,5 +1,5 @@
 This program loops through a folder of images to compare it to one test images. The program requires two arguments to run:
-- folder: a permanent file-path of the folder of images which will be compared to the test image.
+- folder: a file-path relative to this program of the folder of images which will be compared to the test image.
 - image: a file-path to the test image. This file-path is relative to the directory this program is in.
 
 ## Notes on running the program
