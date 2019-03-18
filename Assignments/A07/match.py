@@ -8,6 +8,7 @@ be a space on either side of the '='
 """
 
 import sys
+from skimage.transform import resize
 from skimage.measure import compare_ssim as ssim
 import matplotlib.pyplot as plt
 import numpy as np
@@ -107,11 +108,16 @@ if __name__=='__main__':
 	#make sure image path starts with a /
 	if(args["image"][0] != '/'):
 		args["image"] = '/' + args["image"]
+	if(args["folder"][0] != '/'):
+		args["folder"] = '/' + args["folder"]
 
 	#read image into original_img and convert to RGB
 	orig_fp = os.path.dirname(os.path.abspath(__file__)) + args["image"]
 	original_img = cv2.imread(orig_fp)
+	h,w,channels = original_img.shape
+	print(h,w,channels)
 	original_img = cv2.cvtColor(original_img, cv2.COLOR_BGR2RGB)
+	
 
 	# (comparison_result, RGB image)
 	closest_file_ssim = (-1, "")
@@ -120,10 +126,13 @@ if __name__=='__main__':
 	#Loop through the images in the comparison folder
 	for file in os.listdir(args["folder"]):
 		#read image into compare and convert to RGB
-		file = str(args["folder"] + '/' + file)
+		file = os.path.dirname(os.path.abspath(__file__)) + str(args["folder"] + file)
 		print(file)
+		sys.exit()
 		compare_img = cv2.imread(file)
 		compare_img = cv2.cvtColor(compare_img, cv2.COLOR_BGR2RGB)
+		compare_img = resize(compare_img, (h,w))
+
 		#returns a tuple with the mse and ssim comparison results
 		current_file = compare_images(original_img, compare_img)
 		if(current_file[1] > closest_file_ssim[0]):
